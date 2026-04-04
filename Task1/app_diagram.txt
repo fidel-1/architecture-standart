@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Bank Architecture" id="0">
+    <mxGraphModel dx="1181" dy="853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" value="Клиент" vertex="1">
+          <mxGeometry height="60" width="150" x="130" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="site" parent="1" style="rounded=1;fillColor=#d5e8d4;" value="Сайт" vertex="1">
+          <mxGeometry height="60" width="140" x="680" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="ibank" parent="1" style="rounded=1;fillColor=#d5e8d4;" value="Интернет-банк" vertex="1">
+          <mxGeometry height="60" width="140" x="390" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="abs" parent="1" style="rounded=1;fillColor=#ffe6cc;" value="АБС" vertex="1">
+          <mxGeometry height="60" width="140" x="730" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="sms" parent="1" style="rounded=1;fillColor=#fff2cc;" value="СМС-шлюз" vertex="1">
+          <mxGeometry height="60" width="140" x="960" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="cc" parent="1" style="rounded=1;fillColor=#f8cecc;" value="Система КЦ" vertex="1">
+          <mxGeometry height="60" width="140" x="390" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="operator" parent="1" style="rounded=1;" value="Оператор КЦ" vertex="1">
+          <mxGeometry height="60" width="140" x="135" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="employee" parent="1" style="rounded=1;" value="Сотрудник отделения" vertex="1">
+          <mxGeometry height="60" width="160" x="120" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="manager" parent="1" style="rounded=1;" value="Менеджер бэк-офиса" vertex="1">
+          <mxGeometry height="60" width="140" x="130" y="674" as="geometry" />
+        </mxCell>
+        <mxCell id="credit" parent="1" style="rounded=1;fillColor=#e1d5e7;" value="Кредитный отдел" vertex="1">
+          <mxGeometry height="60" width="160" x="950" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="client" target="site" value="Просмотр маркетинга">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="client" target="ibank" value="Платежи / карты">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="ibank" target="abs" value="Данные счетов (SQL)&#xa;Критично">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="employee" target="abs" value="Заявка на депозит&#xa;Delphi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="manager" target="abs" value="Подтверждение ставки&#xa;Excel">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="abs" target="sms" value="SMS уведомления">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="operator" target="cc" value="Обращение клиента">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="cc" target="abs" value="Лид в бэк">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="abs" target="credit" value="Взаимодействие">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="credit" target="abs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="olj1iaqPxZbtLkdF3mlM-1" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=23;" value="&lt;span style=&quot;color: rgb(227, 227, 227); font-family: &amp;quot;Google Sans Flex&amp;quot;, &amp;quot;Google Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-style: normal; font-variant-ligatures: none; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(40, 42, 44); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Схема интеграции приложений&amp;nbsp; банка Стандарт&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="638" x="192" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

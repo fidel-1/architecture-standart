@@ -1,0 +1,25 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(customer, "Клиент", "Потенциальный или текущий клиент банка")
+
+System_Boundary(bank_boundary, "Банк «Стандарт»") {
+    System(website, "Сайт банка", "Маркетинговая площадка и форма сбора заявок (PHP/React)")
+    System(internet_bank, "Интернет-банк", "Личный кабинет клиента (ASP.NET)")
+    System(abs, "АБС", "Сердце банка: учет, счета, бухгалтерия (Oracle/Delphi)")
+}
+
+System_Ext(sms_gateway, "СМС-шлюз", "Внешний сервис для подтверждения операций")
+System_Ext(partner_call_center, "Партнерский кол-центр", "Внешняя система для обработки лидов с сайта")
+
+' Потоки данных
+Rel(customer, website, "Подает заявку на депозит (новый клиент)", "HTTPS")
+Rel(customer, internet_bank, "Открывает депозит онлайн (текущий клиент)", "HTTPS")
+
+Rel(website, partner_call_center, "Передает данные потенциальных клиентов", "SFTP/File")
+Rel(internet_bank, abs, "Передает заявки на открытие счетов", "Sync/Async(Kafka)")
+Rel(abs, sms_gateway, "Запрос на отправку СМС", "API/HTTPS")
+
+@enduml

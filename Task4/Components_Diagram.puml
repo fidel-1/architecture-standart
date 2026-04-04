@@ -1,0 +1,23 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Container(deposit_db, "Deposit DB", "PostgreSQL", "Хранит актуальные ставки")
+
+Container_Boundary(sync_service, "Rates Sync Service") {
+    Component(cron_scheduler, "Cron Scheduler", "Linux Cron", "Запускает задачу по расписанию (раз в сутки)")
+    Component(export_logic, "Export Logic", "Java/Python", "Выгружает данные из БД и формирует CSV")
+    Component(sftp_client, "SFTP Client", "Library", "Обеспечивает защищенную передачу файла")
+}
+
+System_Ext(partner_sftp, "SFTP Сервер Партнера", "Внешнее хранилище файлов партнера")
+System_Ext(partner_crm, "CRM Партнера", "Система партнерского кол-центра")
+
+Rel(cron_scheduler, export_logic, "Запуск задачи")
+Rel(export_logic, deposit_db, "Запрос актуальных ставок", "SQL")
+Rel(export_logic, sftp_client, "Передача сформированного файла")
+Rel(sftp_client, partner_sftp, "Загрузка файла rates.csv", "SFTP/SSH")
+Rel(partner_crm, partner_sftp, "Импорт ставок из файла", "File Read")
+
+@enduml
