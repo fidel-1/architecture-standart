@@ -1,0 +1,23 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(customer, "Клиент", "Клиент банка (в т.ч. пожилые люди), нуждающийся в консультации")
+
+System_Boundary(bank_boundary, "Банк «Стандарт»") {
+    System(bank_it_system, "ИТ-система Банка", "Обеспечивает работу сайта, ИБ и внутреннего кол-центра")
+}
+
+System_Ext(partner_call_center, "Партнерский кол-центр", "Внешняя организация для обработки звонков")
+System_Ext(sftp_server, "SFTP-сервер Банка", "Защищенное хранилище для передачи файлов со ставками")
+System_Ext(sms_gateway, "СМС-шлюз", "Сервис уведомлений")
+
+Rel(customer, bank_it_system, "Пользуется услугами, звонит в собственный КЦ", "HTTPS / Voice")
+Rel(customer, partner_call_center, "Звонит для консультации по вкладам", "Voice")
+
+Rel(bank_it_system, sftp_server, "Выгружает файл rates.csv по расписанию", "SFTP")
+Rel(partner_call_center, sftp_server, "Забирает файл со ставками для своих систем", "SFTP")
+
+Rel(bank_it_system, sms_gateway, "Отправляет уведомления", "API/HTTPS")
+@enduml
